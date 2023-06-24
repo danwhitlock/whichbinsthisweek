@@ -1,0 +1,7 @@
+.binimage {
+    display: none;
+}
+.binimage.visible {
+    display: block;
+}
+
