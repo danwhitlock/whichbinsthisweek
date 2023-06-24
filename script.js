@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const currentWeek = getWeekNumber(new Date());
+    // const currentWeek = 26;
     const binImages = document.querySelectorAll('.binimage');
     const isEvenWeek = currentWeek % 2 === 0;
   
