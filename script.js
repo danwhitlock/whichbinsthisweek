@@ -1,4 +1,4 @@
-// Determine the current week number
+// Determine the current week number - aligns to ISO 8601 standards
 
 function getWeekNumber(date) {
     const oneJan = new Date(date.getFullYear(), 0, 1);
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentWeek = getWeekNumber(new Date());
 
 // Allows for testing other weeks (comment in the line below, comment out the line above)
-    //const currentWeek = 26;
+   // const currentWeek = 26;
 
 // Select bin images
     const binImages = document.querySelectorAll('.binimage');
