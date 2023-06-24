@@ -1,24 +1,20 @@
-const bins = ['Green Bin', 'Blue Bin', 'Brown Bin'];
-
 document.addEventListener('DOMContentLoaded', () => {
-    const currentWeek = getWeek(new Date());
-    const binIndex = (currentWeek - 1) % bins.length;
-    const currentBin = bins[binIndex];
-
+    const currentWeek = getWeekNumber(new Date());
     const binImages = document.querySelectorAll('.binimage');
-    binImages.forEach((binImage, index) => {
-        if (index === binIndex) {
-            binImage.style.display = 'block';
-        } else {
-            binImage.style.display = 'none';
-        }
+    const isEvenWeek = currentWeek % 2 === 0;
+  
+    binImages.forEach(binImage => {
+        const binId = binImage.id;
+        binImage.style.display = (isEvenWeek && binId !== 'blueBin') || (!isEvenWeek && binId === 'blueBin')
+            ? 'block'
+            : 'none';
     });
-
-    const collectionInfo = document.getElementById('collection-info');
-    collectionInfo.textContent = `This week, please put out your ${currentBin}.`;
 });
 
 function getWeekNumber(date) {
-    const onejan = new Date(date.getFullYear(), 0, 1);
-    return Math.ceil(((date - onejan) / 86400000 + onejan.getDay() + 1) / 7);
-};
+    const oneJan = new Date(date.getFullYear(), 0, 1);
+    const daysOffset = (oneJan.getDay() + 6) % 7; // Adjust for week starting on Monday
+    const firstMonday = new Date(oneJan.getFullYear(), 0, 1 + daysOffset);
+    const weekNumber = Math.floor(((date - firstMonday) / 86400000) / 7) + 1;
+    return weekNumber;
+}
