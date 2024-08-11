@@ -1,10 +1,10 @@
 // Determine the current week number - aligns to ISO 8601 standards
 
 function getWeekNumber(date) {
-    const oneJan = new Date(date.getFullYear(), 0, 1);
+    const oneJan = new Date(date.getFullYear(), 0, 1); // determine January 1st
     const daysOffset = (oneJan.getDay() + 6) % 7; // Adjust for week starting on Monday
-    const firstMonday = new Date(oneJan.getFullYear(), 0, 1 + daysOffset);
-    const weekNumber = Math.floor(((date - firstMonday) / 86400000) / 7) + 1;
+    const firstMonday = new Date(oneJan.getFullYear(), 0, 1 + daysOffset); // find the first Monday of the year
+    const weekNumber = Math.floor(((date - firstMonday) / 86400000) / 7) + 1; // convert milliseconds to weeks
     return weekNumber;
 }
 
@@ -12,6 +12,8 @@ function getWeekNumber(date) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const currentWeek = getWeekNumber(new Date());
+
+    // console.log(currentWeek);
 
 // Allows for testing other weeks (comment in the line below, comment out the line above)
    // const currentWeek = 26;
